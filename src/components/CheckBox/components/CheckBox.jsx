@@ -6,6 +6,7 @@ export const CheckBox = ({
   size = 40,
   strokeWidth = 4,
   strokeColor = 'limegreen',
+  radio = false,
   others,
 }) => {
   const [{ viewBox, cSize, r }, setSvgDimensions] = useState({
@@ -24,7 +25,7 @@ export const CheckBox = ({
 
   return (
     <CheckBoxWrapper size={size} {...others}>
-      <Checkbox type='checkbox' strokeColor={strokeColor} />
+      <Checkbox type={radio ? 'radio' : 'checkbox'} strokeColor={strokeColor} />
       <StrokeWrapper viewBox={viewBox}>
         <Stroke
           cx={cSize}
