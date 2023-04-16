@@ -11,7 +11,6 @@ const Button = ({
   width,
   height,
   radius = 5,
-  size = "md",
   outline = 1,
   disabled,
   ...others
@@ -30,9 +29,9 @@ const Button = ({
       disabled={disabled}
       {...others}
     >
-      {icon && <Icon size={size}>{icon}</Icon>}
+      {icon && <Icon>{icon}</Icon>}
 
-      <ChildrenWrap size={size}>{children}</ChildrenWrap>
+      <ChildrenWrap>{children}</ChildrenWrap>
     </ButtonBox>
   );
 };
@@ -74,7 +73,7 @@ const Icon = styled.div`
   flex: none;
   align-items: center;
   justify-content: center;
-  padding: ${({ size }) => (size === "xs" || size === "sm" ? 14 : 16 + "px")};
+  padding: 15px;
 `;
 const ChildrenWrap = styled.div`
   text-align: center;
