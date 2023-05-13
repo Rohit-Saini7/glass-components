@@ -2,18 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Button = ({
+  bgColor = 'transparent',
   label = 'Button',
-  mainColor = '#0077ff',
+  mainColor = 'rgba(255,255, 255 ,0.7)',
   size = { height: '44px', width: '102px' },
-  textSize = { lineHeight: '42px', fontSize: '17px' },
+  textProps = { lineHeight: '42px', fontSize: '17px', color: '#fff' },
   border = { size: '2px', type: 'solid', radius: '6px', color: 'var(--color)' },
-  hoverTextColor = '#fff',
+  hoverTextColor = '#000',
 }) => {
   return (
     <Btn
+      bgColor={bgColor}
       mainColor={mainColor}
       size={size}
-      textSize={textSize}
+      textProps={textProps}
       border={border}
       hoverTextColor={hoverTextColor}
     >
@@ -27,14 +29,14 @@ export default Button;
 const Btn = styled.button`
   --color: ${({ mainColor }) => mainColor};
   ${({ size }) => `width: ${size.width}; height: ${size.height};`}
-  ${({ textSize }) =>
-    `line-height: ${textSize.lineHeight}; font-size: ${textSize.fontSize};`}
+  ${({ textProps }) =>
+    `line-height: ${textProps.lineHeight}; font-size: ${textProps.fontSize}; color:${textProps.color};`}
   ${({ border }) =>
     `border: ${border.size} ${border.type} ${border.color}; border-radius: ${border.radius};`}
   overflow: hidden;
   z-index: 1;
-  color: var(--color);
   position: relative;
+  background-color: ${({ bgColor }) => bgColor};
 
   &:before {
     content: '';

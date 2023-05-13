@@ -2,16 +2,18 @@ import React, { useRef } from 'react';
 import styled from 'styled-components';
 
 const Input = ({
-  type = 'text',
+  type = 'email',
   placeholder = 'Enter Email...',
   errorMessage = 'The Email is invalid',
   inputRef = useRef(),
-  errorBgColor = '#d30909',
-  errorColor = '#fff',
+  errorBgColor = 'transparent',
+  errorColor = '#ed0b0b',
   placeholderColor = '#aaa',
-  labelColor = '#222',
+  labelColor = '#fff',
   labelFontSize = 10,
-  inputFieldBg = '#f2f2f2',
+  inputFieldBg = 'transparent',
+  inputBorder = '1px solid #fff',
+  fontColor = '#fff',
 }) => {
   return (
     <Container>
@@ -22,6 +24,8 @@ const Input = ({
         labelColor={labelColor}
         labelFontSize={labelFontSize}
         inputFieldBg={inputFieldBg}
+        inputBorder={inputBorder}
+        fontColor={fontColor}
       />
       <Placeholder placeholderColor={placeholderColor}>
         {placeholder}
@@ -47,15 +51,16 @@ const Container = styled.label`
 `;
 
 const InputField = styled.input`
+  color: ${({ fontColor }) => fontColor};
   border: none;
+  border-bottom: ${({ inputBorder }) => inputBorder};
   appearance: none;
   background: ${({ inputFieldBg }) => inputFieldBg};
   padding: 12px;
-  border-radius: 3px;
+  border-radius: ${({ inputBorder }) => (!!inputBorder ? '' : '3px')};
   width: 250px;
   outline: none;
   font-size: 14px;
-
   &:focus ~ span,
   &:not(:placeholder-shown) ~ span {
     top: -${({ labelFontSize }) => labelFontSize}px;
@@ -88,6 +93,7 @@ const ErrorMessage = styled.div`
   align-items: center;
   padding: 0 8px;
   font-size: 12px;
+  font-weight: bold;
   background: ${({ errorBgColor }) => errorBgColor};
   color: ${({ errorColor }) => errorColor};
   height: 24px;

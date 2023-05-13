@@ -18,8 +18,10 @@ const Dropdown = ({
   selectedColor = 'rgba(0 ,0, 0, 0.1)',
   menuBorder = '1px solid #ccc',
   menuZindex = 10,
-  menuBgColor = '#fff',
+  menuBgColor = 'transparent',
   dropdownBoreder = '1px solid #ccc',
+  fontColor = '#fff',
+  tagBgColor = 'rgba(255, 255 ,255 ,0.1)',
 }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [selectedValue, setSelectedValue] = useState(Multiple ? [] : null);
@@ -102,23 +104,26 @@ const Dropdown = ({
   };
 
   return (
-    <Container dropdownBoreder={dropdownBoreder}>
+    <Container dropdownBoreder={dropdownBoreder} fontColor={fontColor}>
       <DropdownInput ref={inputRef} onClick={() => setShowMenu((p) => !p)}>
         {!selectedValue || selectedValue.length === 0 ? (
           placeHolder
         ) : Multiple ? (
           <Tags>
             {selectedValue.map((option) => (
-              <TagItem key={option.value}>
+              <TagItem key={option.value} tagBgColor={tagBgColor}>
                 {option.label}
-                <CloseIcon onClick={(e) => onTagRemove(e, option)} />
+                <CloseIcon
+                  onClick={(e) => onTagRemove(e, option)}
+                  fontColor={fontColor}
+                />
               </TagItem>
             ))}
           </Tags>
         ) : (
           selectedValue.label
         )}
-        <DownIcon showMenu={showMenu} />
+        <DownIcon showMenu={showMenu} fontColor={fontColor} />
       </DropdownInput>
       {showMenu && (
         <Menu
@@ -132,6 +137,8 @@ const Dropdown = ({
               value={searchValue}
               ref={searchRef}
               searchBorder={searchBorder}
+              menuBgColor={menuBgColor}
+              fontColor={fontColor}
             />
           )}
           {getOptions().map((option) => (
@@ -159,6 +166,7 @@ const Container = styled.div`
   position: relative;
   border-radius: 5px;
   max-width: 20%;
+  color: ${({ fontColor }) => fontColor};
 `;
 
 const DropdownInput = styled.div`
@@ -188,8 +196,11 @@ const SearchBoxInput = styled.input`
   padding: 5px;
   border: ${({ searchBorder }) => searchBorder};
   border-radius: 5px;
+  font-size: 1rem;
+  outline: none;
+  color: ${({ fontColor }) => fontColor};
+  background-color: ${({ menuBgColor }) => menuBgColor};
 `;
-//  ${({  }) => }
 
 const Item = styled.div`
   padding: 5px 10px;
@@ -211,7 +222,7 @@ const Tags = styled.div`
 `;
 
 const TagItem = styled.div`
-  background-color: #ddd;
+  background-color: ${({ tagBgColor }) => tagBgColor};
   padding: 2px 4px;
   border-radius: 2px;
   display: flex;
@@ -235,7 +246,7 @@ const DownIcon = styled.i`
     position: absolute;
     left: 50%;
     top: 50%;
-    background-color: #333;
+    background-color: ${({ fontColor }) => fontColor};
   }
   &:before {
     rotate: 45deg;
@@ -260,7 +271,7 @@ const CloseIcon = styled.i`
     content: ' ';
     height: 15px;
     width: 2px;
-    background-color: #333;
+    background-color: ${({ fontColor }) => fontColor};
   }
   &:before {
     transform: rotate(45deg);

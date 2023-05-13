@@ -7,14 +7,15 @@ export const SwitchBox = ({
   circleSize = 45,
   sliderColor = 'rgb(91 91 91)',
   circleColor = 'rgb(33 33 33)',
-  others,
+  ...others
 }) => {
   return (
-    <Switch sliderHeight={sliderHeight} sliderWidth={sliderWidth} {...others}>
+    <Switch sliderHeight={sliderHeight} sliderWidth={sliderWidth}>
       <CheckBox
         type='checkbox'
         sliderWidth={sliderWidth}
         circleSize={circleSize}
+        {...others}
       />
       <Slider sliderColor={sliderColor}>
         <Circle circleColor={circleColor} circleSize={circleSize} />
