@@ -4,11 +4,15 @@ import Circle from './components/Circle';
 import { getCircles } from './components/getCircles';
 
 const RingProgress = ({
-  label = '',
+  size = 150,
+  thickness = 10,
   roundCaps = false,
-  sections = [{}],
-  size = 120,
-  thickness = 12,
+  label = 'It goes in middle.',
+  sections = [
+    { value: 40, color: 'rgb(0, 255, 255, 0.3)' },
+    { value: 15, color: 'rgb(255, 165, 0)' },
+    { value: 15, color: 'rgb(255, 255, 0, 0.3)' },
+  ],
 }) => {
   const cirlces = getCircles({
     size,
@@ -62,51 +66,3 @@ const Label = styled.label`
   left: ${thickness * 2}px;
 `}
 `;
-
-/* <svg width={size} height={size} style={{ transform: 'rotate(-90deg)' }}>
-  <circle
-    fill='none'
-    strokeLinecap='butt'
-    stroke='#f1f3f5'
-    strokeWidth='12'
-    cx={size / 2}
-    cy={size / 2}
-    r='42'
-    transform={'scale(1, -1) translate(0, -' + { size } + ')'}
-    strokeDasharray='26.389378290154262, 237.50440461138837'
-    strokeDashoffset='0'
-  ></circle>
-  <circle
-    fill='none'
-    strokeLinecap='butt'
-    stroke='#15aabf'
-    strokeWidth='12'
-    cx={size / 2}
-    cy={size / 2}
-    r='42'
-    strokeDasharray='105.55751316061705, 158.3362697409256'
-    strokeDashoffset='263.89378290154264'
-  ></circle>
-  <circle
-    fill='none'
-    strokeLinecap='butt'
-    stroke='#e64980'
-    strokeWidth='12'
-    cx={size / 2}
-    cy={size / 2}
-    r='42'
-    strokeDasharray='52.778756580308524, 211.1150263212341'
-    strokeDashoffset='79.16813487046277'
-  ></circle>
-  <circle
-    fill='none'
-    strokeLinecap='butt'
-    stroke='#fd7e14'
-    strokeWidth='12'
-    cx={size / 2}
-    cy={size / 2}
-    r='42'
-    strokeDasharray='79.1681348704628, 184.72564803107986'
-    strokeDashoffset='158.33626974092556'
-  ></circle>
-</svg>; */

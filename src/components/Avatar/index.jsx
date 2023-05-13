@@ -3,12 +3,12 @@ import styled from 'styled-components';
 import PlaceholerIcon from './components/PlaceholerIcon';
 
 const Avatar = ({
-  alt,
-  altColor = 'gray',
-  color = 'rgba(0, 0, 0, 0.1)',
-  radius = 10,
-  size = 38,
-  src,
+  alt = 'Alternate Text',
+  altColor = 'rgba(255, 255, 40, 0.7)',
+  color = 'rgba(255, 255, 40, 0.2)',
+  radius = 5,
+  size = 50,
+  src = '',
   children,
 }) => {
   const [error, setError] = useState(!src);

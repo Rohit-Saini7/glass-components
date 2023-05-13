@@ -2,14 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Notification = ({
-  color = '#228be6',
-  radius = 4,
+  color = 'rgba(255, 255, 255, 0.2)',
+  radius = 10,
   loading = false,
   disallowClose = false,
-  title,
-  icon,
+  title = 'This is title.',
+  onClose = () => console.log('closed'),
+  icon = '',
   children,
-  onClose,
   ...others
 }) => {
   return (
@@ -21,10 +21,15 @@ const Notification = ({
       radius={radius}
       {...others}
     >
-      {icon && !loading && <Icon>{icon}</Icon>}
-      {loading && <Loader />}
+      {!!icon && !loading ? (
+        <Icon>
+          <img src={icon} alt='' />
+        </Icon>
+      ) : (
+        <Loader />
+      )}
       <Body>
-        {title && <Heading>{title}</Heading>}
+        {!!title && <Heading>{title}</Heading>}
         <Description>{children}</Description>
       </Body>
 
@@ -54,7 +59,7 @@ const NotificationWrapper = styled.div`
   padding-left: ${({ icon, loading }) =>
     !!icon || !!loading ? '10px' : '22px'};
   border-radius: ${({ radius }) => radius}px;
-  background-color: #fff;
+  background-color: rgba(3, 65, 251, 0.2);
   border: 1px solid #aaa;
 
   &::before {
@@ -82,7 +87,6 @@ const Icon = styled.div`
   flex: none;
   align-items: center;
   justify-content: center;
-  color: white;
   margin-right: 16px;
   background-color: #228be6;
 `;
@@ -130,12 +134,11 @@ const Heading = styled.div`
   margin-bottom: 2px;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: #212529;
 `;
 
 const Description = styled.div`
-  color: #868e96;
   line-height: 1.4;
+  font-size: 0.9rem;
   overflow: hidden;
   text-overflow: ellipsis;
 `;

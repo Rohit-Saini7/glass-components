@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Progress = ({
-  value = 20,
-  color = '#ddd',
-  barColor = 'pink',
-  size = 10,
-  radius = 10,
+  value = 70,
+  color = 'rgba(228, 136, 109, 0.5)',
+  barColor = 'rgba(79, 208, 74, 0.3)',
+  size = 20,
+  radius = 7,
   striped = false,
   animate = false,
   label = '',
@@ -50,6 +50,7 @@ const Progress = ({
         )
       )
     : null;
+
   return (
     <ProgressBar
       {...others}
@@ -85,8 +86,7 @@ export default Progress;
 const ProgressBar = styled.div`
   position: relative;
   overflow: hidden;
-
-  //changes
+  width: 100%;
   ${({ color, height, radius, striped, animate }) => `
     background-color: ${color};
     height: ${height}px;
@@ -116,6 +116,7 @@ const Bar = styled.div`
   position: absolute;
   top: 0;
   height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

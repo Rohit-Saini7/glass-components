@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Overlay = ({
-  opacity = 0.6,
-  color = '#fff',
-  radius = 0,
-  blur = 0,
+  opacity = 0.5,
+  color = 'rgba(234, 78, 78, 0.7)',
+  radius = 5,
+  blur = 100,
   zIndex = 5,
 }) => {
   return (

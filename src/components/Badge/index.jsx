@@ -2,10 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Badge = ({
-  color = '#228be6',
-  fontColor = '#fff',
-  variant = 'light',
-  size = 20,
+  color = 'rgba(255, 255, 25, 0.3)',
+  fontColor = 'rgba(0, 17, 17, 1)',
+  size = 24,
   radius = 20,
   fullWidth = false,
   leftSection,

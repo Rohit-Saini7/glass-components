@@ -2,10 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Burger = ({
-  opened,
+  opened = false,
   size = 24,
   spacing = 4,
-  transitionDuration = 300,
+  transitionTime = 300,
+  color = 'rgba(205, 93, 93, 1)',
   ...others
 }) => {
   return (
@@ -13,7 +14,8 @@ const Burger = ({
       <BurgerIcon
         data-opened={opened || undefined}
         size={size}
-        transitionDuration={transitionDuration}
+        color={color}
+        transitionTime={transitionTime}
       />
     </BurgerButton>
   );
@@ -45,8 +47,8 @@ const BurgerIcon = styled.div`
     background: ${({ color }) => color};
     outline: 1px solid transparent;
     transition-property: background-color, transform;
-    transition-duration: ${({ transitionDuration }) => transitionDuration}ms;
-    background-color: #000;
+    transition-duration: ${({ transitionTime }) => transitionTime}ms;
+    background-color: ${({ color }) => color};
   }
   &::before,
   &::after {
